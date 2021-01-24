@@ -78,7 +78,7 @@ class KNearestNeighbor(object):
                 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
                 diff = np.square(X[i] - self.X_train[j])
-                dists[i][j] = np.sum(diff)
+                dists[i][j] = np.sqrt(np.sum(diff))
 
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -103,7 +103,7 @@ class KNearestNeighbor(object):
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
             diff = np.square(X[i] - self.X_train)
-            dists[i] = np.sum(diff, axis=1)
+            dists[i] = np.sqrt(np.sum(diff, axis=1))
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -134,7 +134,7 @@ class KNearestNeighbor(object):
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         # (x-y)^2 = x^2-2xy+y^2
-        dists = np.expand_dims(np.sum(np.square(X), axis=1), axis=1) - 2 * X.dot(self.X_train.T) + np.expand_dims(np.sum(np.square(self.X_train), axis=1), axis=0)
+        dists = np.sqrt(np.expand_dims(np.sum(np.square(X), axis=1), axis=1) - 2 * X.dot(self.X_train.T) + np.expand_dims(np.sum(np.square(self.X_train), axis=1), axis=0))
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
